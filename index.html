@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAPELIX — Solutions NFC & Services Numériques | tapelix.dz</title>
+  <meta name="description" content="Cartes NFC connectées personnalisées, porte-clés intelligents, chevalets de table NFC/QR, menus digitaux et cartes vCard en Algérie. tapelix.dz">
+  
+  <!-- Typographies officielles : Cormorant Garamond & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Feuille de style officielle -->
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    /* Protection critique contre tout écran blanc au chargement local */
+    html, body {
+      background-color: #0D0B12 !important;
+      color: #FAF7FC !important;
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================================
+       1. EN-TÊTE DU SITE
+       ======================================================================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo TAPELIX -->
+      <a href="./index.html" class="brand-logo">
+        <div class="brand-icon">
+          <img src="./images/logo.png" alt="Logo TAPELIX">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">TAPELIX</span>
+          <span class="brand-sub">tapelix.dz</span>
+        </div>
+      </a>
+
+      <!-- Navigation Centrale -->
+      <nav class="main-nav">
+        <a href="./index.html" class="nav-link" style="color: var(--accent-light); font-weight: 700;">Accueil</a>
+        <a href="./nfc-cards.html" class="nav-link">Cartes NFC</a>
+        <a href="./nfc-table-stands.html" class="nav-link">Table Stands</a>
+        <a href="./digital-menu.html" class="nav-link">Digital Menu</a>
+        <a href="./digital-cards.html" class="nav-link">Digital Cards</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Actions Droite -->
+      <div class="header-actions">
+        <a href="./nfc-cards.html" class="btn-header-cta">
+          <span>Commander</span>
+          <span>→</span>
+        </a>
+
+        <button class="cart-btn" onclick="window.Tapelix.openCart()" aria-label="Voir mon panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cartBadgeCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =======================================================================
+         2. PAGE D'ACCUEIL (PRÉSENTATION & CATÉGORIES EXACTEMENT COMME SUR LA CAPTURE)
+         ======================================================================= -->
+    <section id="accueil" class="hero-section">
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title font-display">
+            Bienvenue chez <span class="text-gradient">TAPELIX</span>
+          </h1>
+          <p class="hero-subtitle">
+            « Des solutions intelligentes pour connecter votre activité. »
+          </p>
+        </div>
+
+        <!-- Grande image composée compacte -->
+        <div class="hero-media-wrapper">
+          <img src="./assets/aistudio/Gemini_Generated_Image_jd1em3jd1em3jd1e_1cd526d5.jfif" alt="Gamme Complète TAPELIX NFC">
+        </div>
+
+        <!-- Catégories de produits en accès direct sous le visuel (Exactement comme sur la capture d'écran) -->
+        <div class="category-strip-header">
+          <span>CATÉGORIES DE PRODUITS</span>
+          <span style="color: var(--accent-light);">ACCÈS DIRECT ↓</span>
+        </div>
+
+        <div class="category-mini-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 650px; margin: 0 auto; gap: 1rem;">
+          <a href="./nfc-cards.html" class="category-mini-card">
+            <div class="thumb"><img src="./images/nfc-cards-hero.jpg" alt="Cartes NFC Réseaux sociaux"></div>
+            <h4>Cartes NFC Réseaux sociaux</h4>
+            <span>Instagram, TikTok, Facebook</span>
+          </a>
+
+          <a href="./digital-cards.html" class="category-mini-card">
+            <div class="thumb"><img src="./images/digital-card.jpg" alt="Cartes NFC classiques"></div>
+            <h4>Cartes NFC classiques</h4>
+            <span>Design pro & épuré</span>
+          </a>
+
+          <a href="./nfc-table-stands.html" class="category-mini-card">
+            <div class="thumb"><img src="./images/table-stand.jpg" alt="Stands NFC Menu"></div>
+            <h4>Stands NFC Menu</h4>
+            <span>Restaurants & Cafés</span>
+          </a>
+
+          <a href="./digital-menu.html" class="category-mini-card">
+            <div class="thumb"><img src="./images/digital-menu.jpg" alt="Menus digitaux"></div>
+            <h4>Menus digitaux</h4>
+            <span>Sans contact QR & NFC</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         CONTACT SECTION (BAS DE LA PAGE D'ACCUEIL)
+         ======================================================================= -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <span class="section-tag">Contact & Échange</span>
+            <h2 class="section-title font-display" style="margin-bottom: 0.75rem;">
+              Restons en contact
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.5rem; line-height: 1.6;">
+              « Une question ou un projet ? Contactez-nous directement. » Notre équipe vous accompagne partout en Algérie.
+            </p>
+
+            <a href="https://wa.me/213782308820" target="_blank" class="contact-card-direct" style="margin-bottom: 0.75rem;">
+              <div style="display: flex; align-items: center;">
+                <div class="contact-icon-box" style="background: rgba(37, 211, 102, 0.15); color: #25D366;">
+                  💬
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; color: #C5B4DA; display: block;">WhatsApp direct</span>
+                  <strong style="font-size: 0.95rem; color: #FAF7FC;">0782308820</strong>
+                </div>
+              </div>
+              <span style="color: #25D366; font-size: 0.82rem; font-weight: 700;">Contacter sur WhatsApp →</span>
+            </a>
+
+            <a href="https://instagram.com/tapelix.dz" target="_blank" class="contact-card-direct" style="margin-bottom: 0.75rem;">
+              <div style="display: flex; align-items: center;">
+                <div class="contact-icon-box" style="background: rgba(143, 107, 182, 0.2); color: #DFC9F8;">
+                  📷
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; color: #C5B4DA; display: block;">Instagram officiel</span>
+                  <strong style="font-size: 0.95rem; color: #FAF7FC;">@tapelix.dz</strong>
+                </div>
+              </div>
+              <span style="color: #DFC9F8; font-size: 0.82rem; font-weight: 700;">Instagram officiel →</span>
+            </a>
+
+            <a href="https://tiktok.com/@tapelix.dz" target="_blank" class="contact-card-direct">
+              <div style="display: flex; align-items: center;">
+                <div class="contact-icon-box" style="background: rgba(255, 255, 255, 0.1); color: #fff;">
+                  🎵
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; color: #C5B4DA; display: block;">TikTok officiel</span>
+                  <strong style="font-size: 0.95rem; color: #FAF7FC;">@tapelix.dz</strong>
+                </div>
+              </div>
+              <span style="color: #DFC9F8; font-size: 0.82rem; font-weight: 700;">TikTok officiel →</span>
+            </a>
+          </div>
+
+          <!-- Formulaire -->
+          <div class="contact-form">
+            <h3 class="font-display" style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.35rem;">
+              Envoyez-nous un message
+            </h3>
+            <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              Réponse rapide avec devis adapté à votre établissement.
+            </p>
+
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="ctName">Votre nom ou établissement *</label>
+                <input type="text" id="ctName" class="form-control" placeholder="Ex: Karim Meziane" required>
+              </div>
+
+              <div class="form-group">
+                <label for="ctPhone">Téléphone (ex: 05... / 07...) *</label>
+                <input type="tel" id="ctPhone" class="form-control" placeholder="07XX XX XX XX" required>
+              </div>
+
+              <div class="form-group">
+                <label for="ctSubject">Projet ou produit souhaité</label>
+                <select id="ctSubject" class="form-control">
+                  <option value="Carte NFC multi-réseaux">Carte NFC multi-réseaux</option>
+                  <option value="Chevalets de table restaurant (NFC/QR)">Chevalets de table restaurant (NFC/QR)</option>
+                  <option value="Menu Digital interactif">Menu Digital interactif</option>
+                  <option value="Porte-clés connectés">Porte-clés connectés</option>
+                  <option value="Carte de visite digitale & profil vCard">Carte de visite digitale & profil vCard</option>
+                  <option value="Design Graphique (Logo, Flyer)">Design Graphique (Logo, Flyer)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="ctMsg">Précisions (quantités, wilaya...)</label>
+                <textarea id="ctMsg" class="form-control" rows="2" placeholder="Détails de votre commande..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                <span>Transmettre sur WhatsApp (0782308820)</span>
+                <span>💬</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================================================================
+       PIED DE PAGE
+       ======================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <div class="brand-icon">
+              <img src="./images/logo.png" alt="TAPELIX">
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">TAPELIX</span>
+              <span class="brand-sub">tapelix.dz</span>
+            </div>
+          </div>
+          <p class="font-display italic" style="color: #FAF7FC; font-size: 1.05rem; margin-bottom: 0.4rem;">
+            « Connect. Share. Grow. »
+          </p>
+          <p style="font-size: 0.78rem; line-height: 1.5; max-width: 340px;">
+            Marque de référence en Algérie pour les cartes NFC connectées, supports intelligents et solutions digitales innovantes.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Catégories</h5>
+          <ul>
+            <li><a href="./nfc-cards.html">1. Cartes NFC</a></li>
+            <li><a href="./nfc-keychains.html">2. NFC Keychains</a></li>
+            <li><a href="./nfc-table-stands.html">3. Table Stands</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Solutions</h5>
+          <ul>
+            <li><a href="./digital-menu.html">4. Digital Menu</a></li>
+            <li><a href="./digital-cards.html">5. Digital Cards</a></li>
+            <li><a href="./creative-design.html">6. Creative Design</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact Direct</h5>
+          <ul>
+            <li>WhatsApp : <a href="https://wa.me/213782308820" target="_blank" style="color: #25D366; font-weight: 700;">0782308820</a></li>
+            <li>Instagram : <a href="https://instagram.com/tapelix.dz" target="_blank" style="color: var(--accent-light);">@tapelix.dz</a></li>
+            <li>TikTok : <a href="https://tiktok.com/@tapelix.dz" target="_blank" style="color: #FAF7FC;">@tapelix.dz</a></li>
+            <li>Expédition : 58 Wilayas 🇩🇿</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 TAPELIX · tapelix.dz. Tous droits réservés.
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="./tapelix-site.zip" download="tapelix-site.zip" style="background: rgba(143, 107, 182, 0.2); border: 1px solid var(--accent-lavender); color: var(--accent-light); padding: 0.35rem 0.85rem; border-radius: 6px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <span>📦 Télécharger le Site Complet (ZIP)</span>
+          </a>
+          <span>·</span>
+          <span>NFC • PARTAGE • CONNECTE</span>
+          <span>·</span>
+          <button onclick="window.Tapelix.openAdmin()" style="color: var(--accent-lavender); cursor: pointer; text-decoration: underline; background:none; border:none;">
+            Administration des prix & photos
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PANIER SLIDE-OVER -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="window.Tapelix.closeCart()"></div>
+  <aside class="cart-drawer" id="cartDrawerPanel">
+    <div class="cart-drawer-head">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <span style="font-size: 1.1rem;">🛍️</span>
+        <h3 class="font-display" style="font-size: 1.2rem;">Mon Panier TAPELIX</h3>
+      </div>
+      <button class="btn-close" onclick="window.Tapelix.closeCart()">✕</button>
+    </div>
+
+    <div class="cart-drawer-body">
+      <div id="cartEmptyMsg" style="text-align: center; padding: 3rem 1rem; color: #C5B4DA;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🛒</div>
+        <p style="font-weight: 600;">Votre panier est vide</p>
+        <p style="font-size: 0.75rem; margin-top: 0.25rem;">Sélectionnez une catégorie pour commencer.</p>
+      </div>
+
+      <div id="cartItemsList"></div>
+
+      <div id="cartCheckoutBox" style="display: none; margin-top: 1rem; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #FAF7FC; display: block; margin-bottom: 0.4rem;">
+          Vos coordonnées pour la livraison (optionnel) :
+        </span>
+        <input type="text" id="cartClientName" class="form-control" placeholder="Nom complet" style="margin-bottom: 0.4rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+          <input type="tel" id="cartClientPhone" class="form-control" placeholder="N° Téléphone">
+          <input type="text" id="cartClientWilaya" class="form-control" placeholder="Wilaya">
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-drawer-foot">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <div>
+          <span style="font-size: 0.75rem; color: #C5B4DA; display: block;">Total de la commande</span>
+          <span style="font-size: 0.7rem; color: #25D366; font-weight: 600;">Paiement à la livraison</span>
+        </div>
+        <strong id="cartTotalDA" style="font-size: 1.25rem; color: #fff;">0 DA</strong>
+      </div>
+      <button class="btn-whatsapp-order" onclick="window.Tapelix.checkoutCartWhatsApp()" style="width: 100%; padding: 0.75rem;">
+        <span>Confirmer la commande sur WhatsApp (0782308820)</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MODALE ADMINISTRATION -->
+  <div class="modal-overlay" id="adminModal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div class="modal-head">
+        <div>
+          <h3 class="font-display">Administration · Gestion des Prix</h3>
+          <span style="font-size: 0.72rem; color: #C5B4DA;">Modifiez les prix en DA</span>
+        </div>
+        <button class="btn-close" onclick="window.Tapelix.closeModal('adminModal')">✕</button>
+      </div>
+
+      <div class="modal-body" style="font-size: 0.8rem;">
+        <form id="adminPricingForm" style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 0.85rem; font-weight: 700; color: #DFC9F8; margin-bottom: 0.6rem;">
+            Barème des Cartes NFC :
+          </h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <div>
+              <label>1 Réseau (DA) :</label>
+              <input type="number" id="admPrice1" class="form-control" value="2800">
+            </div>
+            <div>
+              <label>2 Réseaux (DA) :</label>
+              <input type="number" id="admPrice2" class="form-control" value="3200">
+            </div>
+            <div>
+              <label>3 Réseaux (DA) :</label>
+              <input type="number" id="admPrice3" class="form-control" value="3600">
+            </div>
+            <div>
+              <label>4 Réseaux (DA) :</label>
+              <input type="number" id="admPrice4" class="form-control" value="3900">
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.78rem;">
+            Enregistrer les prix
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

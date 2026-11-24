@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartes NFC personnalisées — TAPELIX | tapelix.dz</title>
+  <meta name="description" content="Cartes NFC connectées personnalisées Instagram, TikTok et Facebook en Algérie. 2000 DA la carte. tapelix.dz">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    :root {
+      --bg-black: #15131B;
+      --bg-surface: #30283D;
+      --accent-lavender: #76618E;
+      --accent-light: #B7A5C9;
+      --text-primary: #F2EEF5;
+      --text-secondary: #B7A5C9;
+    }
+    html, body {
+      background-color: var(--bg-black) !important;
+      color: var(--text-primary) !important;
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    /* Style spécifique épuré mat et premium pour nfc-cards */
+    .nfc-hero-img {
+      max-width: 480px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid rgba(118, 97, 142, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .social-select-card {
+      background: var(--bg-surface);
+      border: 1px solid rgba(118, 97, 142, 0.3);
+      border-radius: 12px;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .social-select-card.selected {
+      border-color: var(--accent-light);
+      background: #3c324e;
+      box-shadow: 0 0 20px rgba(183, 165, 201, 0.15);
+    }
+    .social-inputs-area {
+      background: #1e1a26;
+      border: 1px solid rgba(118, 97, 142, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+    .social-inputs-area.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EN-TÊTE -->
+  <header class="site-header" style="background: rgba(21, 19, 27, 0.95); border-bottom: 1px solid #30283D;">
+    <div class="container header-inner">
+      <a href="./index.html" class="brand-logo">
+        <div class="brand-icon" style="background: #30283D; border-color: #76618E;">
+          <img src="./images/logo.png" alt="Logo TAPELIX">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">TAPELIX</span>
+          <span class="brand-sub">tapelix.dz</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="./index.html" class="nav-link">← Accueil</a>
+        <a href="./nfc-cards.html" class="nav-link" style="color: var(--accent-light); font-weight: 700;">Cartes NFC</a>
+        <a href="./nfc-table-stands.html" class="nav-link">Table Stands</a>
+        <a href="./digital-menu.html" class="nav-link">Digital Menu</a>
+        <a href="./digital-cards.html" class="nav-link">Digital Cards</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#commander" class="btn-header-cta" style="background: var(--accent-lavender);">
+          <span>Commander</span>
+          <span>⚡</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. PETITE PHOTO PRINCIPALE 3D CENTRÉE -->
+    <section style="padding: 2.5rem 0 1.5rem;">
+      <div class="container" style="text-align: center;">
+        <div style="margin-bottom: 1rem; text-align: left;">
+          <a href="./index.html" style="color: var(--accent-light); font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem;">
+            ← Retour à l'accueil
+          </a>
+        </div>
+
+        <h1 class="font-display" style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; margin: 0.3rem 0 0.5rem; color: #F2EEF5;">
+          Cartes NFC personnalisées
+        </h1>
+
+        <!-- Image 3D plus petite et élégante -->
+        <div style="max-width: 520px; margin: 0 auto;">
+          <img src="./images/nfc-cards-hero.jpg" alt="Cartes NFC TAPELIX" class="nfc-hero-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. GALERIE HORIZONTALE DE MES RÉALISATIONS CLIENTS -->
+    <section style="padding: 1.5rem 0 2.5rem; border-top: 1px solid #30283D;">
+      <div class="container">
+        <div class="section-head" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <span class="section-tag" style="color: var(--accent-light);">Algérie 🇩🇿</span>
+            <h2 class="section-title font-display" style="font-size: 1.6rem; margin: 0; color: #F2EEF5;">Réalisations clients</h2>
+          </div>
+          <div class="carousel-controls" style="display: flex; gap: 0.5rem;">
+            <button class="ctrl-btn" onclick="window.TapelixReals.scroll(-1)" style="background: #30283D; color: #F2EEF5; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #76618E; cursor: pointer;">←</button>
+            <button class="ctrl-btn" onclick="window.TapelixReals.scroll(1)" style="background: #30283D; color: #F2EEF5; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #76618E; cursor: pointer;">→</button>
+          </div>
+        </div>
+
+        <!-- Carrousel horizontal fluide -->
+        <div class="horizontal-carousel" id="realisationsCarousel" style="display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; scrollbar-width: thin; scrollbar-color: #76618E #15131B;">
+
+          <div class="card-item" style="flex: 0 0 280px; scroll-snap-align: start; background: #30283D; border-radius: 12px; border: 1px solid rgba(118,97,142,0.3); overflow: hidden;">
+            <div class="card-thumb" onclick="window.TapelixReals.zoom('./images/real-3.JPG', 'Bijouterie Raya')" style="height: 200px; cursor: pointer; overflow: hidden;">
+              <img src="./images/real-3.JPG" alt="Bijouterie Raya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
+            </div>
+            <div style="padding: 0.85rem;">
+              <h4 style="font-size: 0.9rem; font-weight: 700; color: #F2EEF5; margin: 0 0 0.2rem;">Bijouterie Raya</h4>
+              <p style="font-size: 0.75rem; color: #B7A5C9; margin: 0;">Vitrine connectée sans contact</p>
+            </div>
+          </div>
+
+          <div class="card-item" style="flex: 0 0 280px; scroll-snap-align: start; background: #30283D; border-radius: 12px; border: 1px solid rgba(118,97,142,0.3); overflow: hidden;">
+            <div class="card-thumb" onclick="window.TapelixReals.zoom('./images/real-4.JPG', 'Restaurant Golden House')" style="height: 200px; cursor: pointer; overflow: hidden;">
+              <img src="./images/real-4.JPG" alt="Restaurant Golden House" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
+            </div>
+            <div style="padding: 0.85rem;">
+              <h4 style="font-size: 0.9rem; font-weight: 700; color: #F2EEF5; margin: 0 0 0.2rem;">Restaurant Golden House</h4>
+              <p style="font-size: 0.75rem; color: #B7A5C9; margin: 0;">Comptoir d'accueil interactif</p>
+            </div>
+          </div>
+
+          <div class="card-item" style="flex: 0 0 280px; scroll-snap-align: start; background: #30283D; border-radius: 12px; border: 1px solid rgba(118,97,142,0.3); overflow: hidden;">
+            <div class="card-thumb" onclick="window.TapelixReals.zoom('./images/real-5.JPG', 'Prêt-à-porter Homme')" style="height: 200px; cursor: pointer; overflow: hidden;">
+              <img src="./images/real-5.JPG" alt="Prêt-à-porter" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
+            </div>
+            <div style="padding: 0.85rem;">
+              <h4 style="font-size: 0.9rem; font-weight: 700; color: #F2EEF5; margin: 0 0 0.2rem;">Mode & Prêt-à-porter</h4>
+              <p style="font-size: 0.75rem; color: #B7A5C9; margin: 0;">Affichage vitrine et réseaux</p>
+            </div>
+          </div>
+
+          <div class="card-item" style="flex: 0 0 280px; scroll-snap-align: start; background: #30283D; border-radius: 12px; border: 1px solid rgba(118,97,142,0.3); overflow: hidden;">
+            <div class="card-thumb" onclick="window.TapelixReals.zoom('./images/real-6.JPG', 'Boutique GS Mode Femme')" style="height: 200px; cursor: pointer; overflow: hidden;">
+              <img src="./images/real-6.JPG" alt="Boutique GS" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
+            </div>
+            <div style="padding: 0.85rem;">
+              <h4 style="font-size: 0.9rem; font-weight: 700; color: #F2EEF5; margin: 0 0 0.2rem;">Boutique GS Femme</h4>
+              <p style="font-size: 0.75rem; color: #B7A5C9; margin: 0;">Entrée connectée élégante</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BOUTON COMMANDER MAINTENANT -->
+    <section style="padding: 4rem 0; border-top: 1px solid #30283D; text-align: center;">
+      <div class="container" style="max-width: 600px;">
+        <h2 class="font-display" style="font-size: 2rem; font-weight: 700; color: #F2EEF5; margin-bottom: 0.75rem;">
+          Prêt à connecter votre activité ?
+        </h2>
+        <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem;">
+          Commandez vos cartes NFC personnalisées en quelques clics au tarif exceptionnel de 2 000 DA l'unité.
+        </p>
+        <a href="./order.html?product=Cartes%20NFC%20personnalis%C3%A9es&category=Cartes%20NFC&price=2000" class="btn-whatsapp-order" style="background: var(--accent-lavender); color: #F2EEF5; padding: 1.1rem 2.5rem; font-size: 1.1rem; border-radius: 12px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; box-shadow: 0 10px 30px rgba(118,97,142,0.4);">
+          <span>COMMANDER MAINTENANT</span>
+          <span>⚡</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIED DE PAGE -->
+  <footer class="site-footer" style="background: #15131B; border-top: 1px solid #30283D; padding: 2.5rem 0 1.5rem;">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <div class="brand-icon" style="background: #30283D; border-color: #76618E;">
+              <img src="./images/logo.png" alt="TAPELIX">
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">TAPELIX</span>
+              <span class="brand-sub">tapelix.dz</span>
+            </div>
+          </div>
+          <p class="font-display italic" style="color: #F2EEF5; font-size: 1.05rem; margin-bottom: 0.4rem;">
+            « Connect. Share. Grow. »
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Catégories</h5>
+          <ul>
+            <li><a href="./nfc-cards.html" style="color: var(--accent-light);">1. Cartes NFC</a></li>
+            <li><a href="./nfc-keychains.html">2. NFC Keychains</a></li>
+            <li><a href="./nfc-table-stands.html">3. Table Stands</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Solutions</h5>
+          <ul>
+            <li><a href="./digital-menu.html">4. Digital Menu</a></li>
+            <li><a href="./digital-cards.html">5. Digital Cards</a></li>
+            <li><a href="./creative-design.html">6. Creative Design</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact Direct</h5>
+          <ul>
+            <li>WhatsApp : <a href="https://wa.me/213782308820" target="_blank" style="color: #25D366; font-weight: 700;">0782308820</a></li>
+            <li>Instagram : <a href="https://instagram.com/tapelix.dz" target="_blank" style="color: var(--accent-light);">@tapelix.dz</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 TAPELIX · tapelix.dz. Tous droits réservés.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALE ZOOM PHOTO -->
+  <div class="modal-overlay" id="zoomModal" onclick="window.TapelixReals.closeZoom()" style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 1rem;">
+    <div style="position: relative; max-width: 90vw; max-height: 90vh;">
+      <button onclick="window.TapelixReals.closeZoom()" style="position: absolute; top: -40px; right: 0; background: #30283D; color: #F2EEF5; border: 1px solid #76618E; width: 36px; height: 36px; border-radius: 50%; font-weight: 700; cursor: pointer;">✕</button>
+      <img id="zoomImg" src="" alt="Zoom" style="max-width: 100%; max-height: 85vh; border-radius: 8px; border: 1px solid #76618E;">
+      <p id="zoomCaption" style="text-align: center; color: #F2EEF5; margin-top: 0.75rem; font-size: 0.9rem;"></p>
+    </div>
+  </div>
+
+  <!-- Script de gestion du carrousel -->
+  <script>
+    (function () {
+      'use strict';
+      window.TapelixReals = {
+        scroll: function(dir) {
+          const el = document.getElementById('realisationsCarousel');
+          if (el) {
+            el.scrollBy({ left: dir * 300, behavior: 'smooth' });
+          }
+        },
+        zoom: function(src, caption) {
+          const modal = document.getElementById('zoomModal');
+          const img = document.getElementById('zoomImg');
+          const cap = document.getElementById('zoomCaption');
+          if (modal && img) {
+            img.src = src;
+            if (cap) cap.innerText = caption || '';
+            modal.style.display = 'flex';
+          }
+        },
+        closeZoom: function() {
+          const modal = document.getElementById('zoomModal');
+          if (modal) modal.style.display = 'none';
+        }
+      };
+    })();
+  </script>
+</body>
+</html>
+</body>
+</html>

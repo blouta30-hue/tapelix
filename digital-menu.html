@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Menu — TAPELIX | tapelix.dz</title>
+  <meta name="description" content="Menus numériques interactifs et solutions sans contact pour restaurants et cafés en Algérie. tapelix.dz">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    html, body {
+      background-color: #0D0B12 !important;
+      color: #FAF7FC !important;
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="./index.html" class="brand-logo">
+        <div class="brand-icon">
+          <img src="./images/logo.png" alt="Logo TAPELIX">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">TAPELIX</span>
+          <span class="brand-sub">tapelix.dz</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="./index.html" class="nav-link">← Accueil</a>
+        <a href="./nfc-cards.html" class="nav-link">Cartes NFC</a>
+        <a href="./nfc-table-stands.html" class="nav-link">Table Stands</a>
+        <a href="./digital-menu.html" class="nav-link" style="color: var(--accent-light); font-weight: 700;">Digital Menu</a>
+        <a href="./digital-cards.html" class="nav-link">Digital Cards</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-btn" onclick="window.Tapelix.openCart()" aria-label="Voir mon panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cartBadgeCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="products-section" style="padding: 3rem 0;">
+      <div class="container">
+        <div style="margin-bottom: 2rem;">
+          <a href="./index.html" style="color: var(--accent-light); font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; margin-bottom: 0.75rem;">
+            ← Retour à l'accueil
+          </a>
+          <span class="section-tag">Catégorie 4 · Solutions Restauration</span>
+          <h1 class="section-title font-display" style="font-size: 2.5rem; margin-top: 0.35rem;">Digital Menu</h1>
+          <p style="color: var(--text-secondary); max-width: 600px; font-size: 0.95rem; margin-top: 0.5rem;">
+            Modernisez votre établissement avec des menus numériques interactifs et des packs complets NFC + QR Code.
+          </p>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/digital-menu.jpg" alt="QR Code Menu">
+            </div>
+            <div class="product-info">
+              <div class="product-title-row">
+                <h3 class="product-title">QR Code Menu</h3>
+                <span class="product-price">8 500 DA</span>
+              </div>
+              <p class="product-desc">Menu en ligne interactif sur smartphone avec photos HD, catégories et prix à jour.</p>
+              <a href="./order.html?product=Formule%20QR%20Code%20Menu&category=Digital%20Menu&price=8500" class="btn-product-action" style="text-decoration: none; justify-content: center;">
+                <span>COMMANDER MAINTENANT</span>
+                <span>⚡</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/digital-menu.jpg" alt="NFC + QR Code Menu">
+            </div>
+            <div class="product-info">
+              <div class="product-title-row">
+                <h3 class="product-title">NFC + QR Code Menu</h3>
+                <span class="product-price">15 000 DA</span>
+              </div>
+              <p class="product-desc">Pack complet : création de votre menu numérique + supports de table physiques assortis.</p>
+              <a href="./order.html?product=Pack%20NFC%20%2B%20QR%20Code%20Menu&category=Digital%20Menu&price=15000" class="btn-product-action" style="text-decoration: none; justify-content: center;">
+                <span>COMMANDER MAINTENANT</span>
+                <span>⚡</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/digital-menu.jpg" alt="Interactive Digital Menu">
+            </div>
+            <div class="product-info">
+              <div class="product-title-row">
+                <h3 class="product-title">Interactive Digital Menu</h3>
+                <span class="product-price">24 000 DA</span>
+              </div>
+              <p class="product-desc">Expérience haut de gamme avec filtres d'allergènes et commande WhatsApp de table.</p>
+              <a href="./order.html?product=Menu%20Interactif%20Avancé&category=Digital%20Menu&price=24000" class="btn-product-action" style="text-decoration: none; justify-content: center;">
+                <span>COMMANDER MAINTENANT</span>
+                <span>⚡</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <div class="brand-icon">
+              <img src="./images/logo.png" alt="TAPELIX">
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">TAPELIX</span>
+              <span class="brand-sub">tapelix.dz</span>
+            </div>
+          </div>
+          <p class="font-display italic" style="color: #FAF7FC; font-size: 1.05rem; margin-bottom: 0.4rem;">
+            « Connect. Share. Grow. »
+          </p>
+        </div>
+        <div class="footer-col">
+          <h5>Catégories</h5>
+          <ul>
+            <li><a href="./nfc-cards.html">1. Cartes NFC</a></li>
+            <li><a href="./nfc-keychains.html">2. NFC Keychains</a></li>
+            <li><a href="./nfc-table-stands.html">3. Table Stands</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Solutions</h5>
+          <ul>
+            <li><a href="./digital-menu.html" style="color: var(--accent-light);">4. Digital Menu</a></li>
+            <li><a href="./digital-cards.html">5. Digital Cards</a></li>
+            <li><a href="./creative-design.html">6. Creative Design</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact Direct</h5>
+          <ul>
+            <li>WhatsApp : <a href="https://wa.me/213782308820" target="_blank" style="color: #25D366; font-weight: 700;">0782308820</a></li>
+            <li>Instagram : <a href="https://instagram.com/tapelix.dz" target="_blank" style="color: var(--accent-light);">@tapelix.dz</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 TAPELIX · tapelix.dz. Tous droits réservés.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="window.Tapelix.closeCart()"></div>
+  <aside class="cart-drawer" id="cartDrawerPanel">
+    <div class="cart-drawer-head">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <span style="font-size: 1.1rem;">🛍️</span>
+        <h3 class="font-display" style="font-size: 1.2rem;">Mon Panier TAPELIX</h3>
+      </div>
+      <button class="btn-close" onclick="window.Tapelix.closeCart()">✕</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div id="cartEmptyMsg" style="text-align: center; padding: 3rem 1rem; color: #C5B4DA;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🛒</div>
+        <p style="font-weight: 600;">Votre panier est vide</p>
+      </div>
+      <div id="cartItemsList"></div>
+      <div id="cartCheckoutBox" style="display: none; margin-top: 1rem; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #FAF7FC; display: block; margin-bottom: 0.4rem;">Coordonnées livraison :</span>
+        <input type="text" id="cartClientName" class="form-control" placeholder="Nom complet" style="margin-bottom: 0.4rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+          <input type="tel" id="cartClientPhone" class="form-control" placeholder="N° Téléphone">
+          <input type="text" id="cartClientWilaya" class="form-control" placeholder="Wilaya">
+        </div>
+      </div>
+    </div>
+    <div class="cart-drawer-foot">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; color: #C5B4DA;">Total</span>
+        <strong id="cartTotalDA" style="font-size: 1.25rem; color: #fff;">0 DA</strong>
+      </div>
+      <button class="btn-whatsapp-order" onclick="window.Tapelix.checkoutCartWhatsApp()" style="width: 100%; padding: 0.75rem;">
+        <span>Commander sur WhatsApp (0782308820)</span>
+      </button>
+    </div>
+  </aside>
+
+  <script src="./script.js"></script>
+</body>
+</html>

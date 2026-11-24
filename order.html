@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commander — TAPELIX | tapelix.dz</title>
+  <meta name="description" content="Commander vos solutions connectées NFC et numériques en Algérie. tapelix.dz">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    :root {
+      --bg-black: #15131B;
+      --bg-surface: #30283D;
+      --accent-lavender: #76618E;
+      --accent-light: #B7A5C9;
+      --text-primary: #F2EEF5;
+      --text-secondary: #B7A5C9;
+    }
+    html, body {
+      background-color: var(--bg-black) !important;
+      color: var(--text-primary) !important;
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .order-container {
+      max-width: 700px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+    .order-card {
+      background: var(--bg-surface);
+      border: 1px solid rgba(118, 97, 142, 0.3);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      margin-bottom: 0.35rem;
+    }
+    .form-control {
+      width: 100%;
+      background: #1e1a26;
+      border: 1px solid rgba(118, 97, 142, 0.3);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--accent-light);
+      box-shadow: 0 0 10px rgba(183, 165, 201, 0.15);
+    }
+    .soc-toggle-card {
+      position: relative;
+      background: #1e1a26;
+      border: 1.5px solid rgba(118, 97, 142, 0.3);
+      border-radius: 14px;
+      padding: 1.25rem 0.75rem 1rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      user-select: none;
+    }
+    .soc-toggle-card:hover {
+      border-color: rgba(183, 165, 201, 0.5);
+      transform: translateY(-2px);
+    }
+    .soc-toggle-card.active {
+      border-color: #B7A5C9;
+      border-width: 2px;
+      background: #2f253d;
+      box-shadow: 0 0 20px rgba(183, 165, 201, 0.22);
+    }
+    .soc-check-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(118, 97, 142, 0.4);
+      background: rgba(21, 19, 27, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: transparent;
+      transition: all 0.2s ease;
+    }
+    .soc-toggle-card.active .soc-check-badge {
+      border-color: #B7A5C9;
+      background: #76618E;
+      color: #FAF7FC;
+      box-shadow: 0 0 10px rgba(183, 165, 201, 0.6);
+    }
+    .soc-logo-wrap {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    .soc-toggle-card:hover .soc-logo-wrap {
+      transform: scale(1.08);
+    }
+    .deliv-card {
+      background: #1e1a26;
+      border: 1px solid rgba(118, 97, 142, 0.3);
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .deliv-card.active {
+      border-color: var(--accent-light);
+      background: #3c324e;
+      border-width: 2px;
+    }
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 11, 18, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EN-TÊTE -->
+  <header class="site-header" style="background: rgba(21, 19, 27, 0.95); border-bottom: 1px solid #30283D;">
+    <div class="container header-inner">
+      <a href="./index.html" class="brand-logo">
+        <div class="brand-icon" style="background: #30283D; border-color: #76618E;">
+          <img src="./images/logo.png" alt="Logo TAPELIX">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">TAPELIX</span>
+          <span class="brand-sub">tapelix.dz</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="./index.html" class="nav-link">← Accueil</a>
+        <a href="./nfc-cards.html" class="nav-link">Cartes NFC</a>
+        <a href="./nfc-table-stands.html" class="nav-link">Table Stands</a>
+        <a href="./digital-menu.html" class="nav-link">Digital Menu</a>
+        <a href="./digital-cards.html" class="nav-link">Digital Cards</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="./index.html" class="btn-header-cta" style="background: var(--accent-lavender); color: #FAF7FC;">
+          <span>Accueil</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="order-container">
+    <div style="margin-bottom: 1.5rem;">
+      <a href="javascript:history.back()" style="color: var(--accent-light); font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem;">
+        ← Retour au produit
+      </a>
+      <h1 class="font-display" style="font-size: 2.2rem; font-weight: 700; margin: 0.5rem 0 0.2rem; color: #F2EEF5;">
+        Validation de commande
+      </h1>
+      <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0;">
+        Remplissez les informations ci-dessous pour enregistrer votre commande dans Google Sheets.
+      </p>
+    </div>
+
+    <div class="order-card">
+      <!-- 1. PRODUIT SÉLECTIONNÉ -->
+      <div style="background: #1e1a26; border: 1px solid rgba(118,97,142,0.3); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <img id="orderProductThumb" src="./images/nfc-cards-hero.jpg" alt="Aperçu produit" style="width: 58px; height: 58px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(118,97,142,0.4);">
+          <div>
+            <span id="orderCategoryLabel" style="font-size: 0.7rem; color: var(--accent-light); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 0.2rem;">Catégorie</span>
+            <h2 id="orderProductName" class="font-display" style="font-size: 1.3rem; margin: 0; color: #F2EEF5;">Chargement du produit...</h2>
+          </div>
+        </div>
+        <div style="text-align: right; min-width: 90px;">
+          <span style="font-size: 0.75rem; color: var(--text-secondary); display: block;">Prix unitaire</span>
+          <strong id="orderUnitDisplay" style="font-size: 1.15rem; color: var(--accent-light);">0 DA</strong>
+        </div>
+      </div>
+
+      <!-- 2. OPTIONS & RÉSEAUX SOCIAUX -->
+      <div class="form-group" id="socialOptionsContainer">
+        <label>1. Choix des réseaux sociaux (sélectionnez 1, 2 ou 3 cartes)</label>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-bottom: 1rem;">
+          <!-- Instagram -->
+          <div class="soc-toggle-card active" data-soc="instagram" onclick="window.TapelixCheckout.toggleSocial('instagram')">
+            <span class="soc-check-badge">✓</span>
+            <div class="soc-logo-wrap">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="igGrad" cx="0.2" cy="1" r="1.1">
+                    <stop offset="0%" stop-color="#FFDD55"/>
+                    <stop offset="15%" stop-color="#FF543E"/>
+                    <stop offset="50%" stop-color="#C837AB"/>
+                    <stop offset="100%" stop-color="#4F5BD5"/>
+                  </radialGradient>
+                </defs>
+                <rect width="48" height="48" rx="12" fill="url(#igGrad)"/>
+                <rect x="11" y="11" width="26" height="26" rx="7.5" stroke="#ffffff" stroke-width="2.6" fill="none"/>
+                <circle cx="24" cy="24" r="6.2" stroke="#ffffff" stroke-width="2.6" fill="none"/>
+                <circle cx="31.2" cy="16.8" r="1.6" fill="#ffffff"/>
+              </svg>
+            </div>
+            <strong style="font-size: 0.95rem; color: #F2EEF5;">Instagram</strong>
+            <span style="font-size: 0.72rem; color: var(--accent-light);">Carte NFC Pro</span>
+          </div>
+
+          <!-- TikTok -->
+          <div class="soc-toggle-card" data-soc="tiktok" onclick="window.TapelixCheckout.toggleSocial('tiktok')">
+            <span class="soc-check-badge">✓</span>
+            <div class="soc-logo-wrap">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" rx="12" fill="#000000"/>
+                <path d="M28.8 12c.5 3 2.5 5.2 5.5 5.5v4.2c-2.1 0-4-.7-5.5-1.9v10.4c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c.6 0 1.2.1 1.8.2v4.4c-.6-.2-1.2-.3-1.8-.3-2.6 0-4.7 2.1-4.7 4.7s2.1 4.7 4.7 4.7 4.7-2.1 4.7-4.7V12h4.3z" fill="#25F4EE"/>
+                <path d="M29.8 13c.5 3 2.5 5.2 5.5 5.5v3.4c-2.1 0-4-.7-5.5-1.9v10.4c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c.6 0 1.2.1 1.8.2v3.6c-.6-.2-1.2-.3-1.8-.3-2.6 0-4.7 2.1-4.7 4.7s2.1 4.7 4.7 4.7 4.7-2.1 4.7-4.7V13h4.3z" fill="#FE2C55"/>
+              </svg>
+            </div>
+            <strong style="font-size: 0.95rem; color: #F2EEF5;">TikTok</strong>
+            <span style="font-size: 0.72rem; color: var(--accent-light);">Carte NFC Creator</span>
+          </div>
+
+          <!-- Facebook -->
+          <div class="soc-toggle-card" data-soc="facebook" onclick="window.TapelixCheckout.toggleSocial('facebook')">
+            <span class="soc-check-badge">✓</span>
+            <div class="soc-logo-wrap">
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" rx="12" fill="#1877F2"/>
+                <path d="M27 39V25.2h4.6l.7-5.4H27V16.4c0-1.6.4-2.6 2.7-2.6H32V9c-.5-.1-2.1-.2-4-.2-4 0-6.7 2.4-6.7 6.9v4.1h-4.6v5.4h4.6V39H27z" fill="#FFFFFF"/>
+              </svg>
+            </div>
+            <strong style="font-size: 0.95rem; color: #F2EEF5;">Facebook</strong>
+            <span style="font-size: 0.72rem; color: var(--accent-light);">Carte NFC Business</span>
+          </div>
+        </div>
+        <div id="socialInputsArea" style="background: #15131B; border: 1px solid rgba(118,97,142,0.3); border-radius: 8px; padding: 1rem;">
+          <!-- dynamique -->
+        </div>
+      </div>
+
+      <!-- OPTIONS STANDARDS SI PAS NFC -->
+      <div class="form-group" id="standardOptionsContainer" style="display: none;">
+        <label>1. Personnalisation / Note sur le produit</label>
+        <input type="text" id="standardCustomNote" class="form-control" placeholder="Précisez vos instructions ou références...">
+      </div>
+
+      <!-- 3. COORDONNÉES CLIENT -->
+      <div class="form-group">
+        <label>2. Vos coordonnées de livraison</label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.2rem; display: block;">Nom et Prénom *</label>
+            <input type="text" id="clientName" class="form-control" placeholder="Karim Meziane" required>
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.2rem; display: block;">Téléphone *</label>
+            <input type="tel" id="clientPhone" class="form-control" placeholder="07XX XX XX XX" required>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.2rem; display: block;">Wilaya *</label>
+            <input type="text" id="clientWilaya" class="form-control" placeholder="Alger, Oran..." required>
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.2rem; display: block;">Commune *</label>
+            <input type="text" id="clientCommune" class="form-control" placeholder="Bab Ezzouar..." required>
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem;">
+          <label style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.2rem; display: block;">Photos ou logos (facultatif)</label>
+          <input type="file" id="orderFiles" class="form-control" multiple accept="image/*">
+        </div>
+      </div>
+
+      <!-- 4. MODE DE LIVRAISON -->
+      <div class="form-group">
+        <label>3. Mode de livraison</label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div class="deliv-card active" id="delivHomeCard" onclick="window.TapelixCheckout.setDelivery('home')">
+            <strong style="display: block; font-size: 0.9rem; color: #F2EEF5; margin-bottom: 0.2rem;">🏠 À domicile</strong>
+            <span style="font-size: 0.75rem; color: var(--text-secondary);">Livraison par coursier</span>
+          </div>
+          <div class="deliv-card" id="delivDeskCard" onclick="window.TapelixCheckout.setDelivery('desk')">
+            <strong style="display: block; font-size: 0.9rem; color: #F2EEF5; margin-bottom: 0.2rem;">🏢 Stop Desk</strong>
+            <span style="font-size: 0.75rem; color: var(--text-secondary);">Retrait bureau Wilaya</span>
+          </div>
+        </div>
+        <div id="deskArea" style="display: none; margin-top: 0.5rem;">
+          <label style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.2rem; display: block;">Bureau / Point de retrait souhaité</label>
+          <input type="text" id="clientDesk" class="form-control" placeholder="Ex: Bureau Yalidine centre-ville">
+        </div>
+        <div id="homeAddressArea" style="margin-top: 0.5rem;">
+          <label style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.2rem; display: block;">Adresse complète de livraison</label>
+          <input type="text" id="clientAddress" class="form-control" placeholder="Rue, quartier, immeuble...">
+        </div>
+      </div>
+
+      <!-- 5. QUANTITÉ & PRIX -->
+      <div class="form-group" style="background: #1e1a26; border: 1px solid rgba(118,97,142,0.3); border-radius: 12px; padding: 1.25rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+          <span style="font-size: 0.85rem; font-weight: 700; color: #F2EEF5;">Quantité :</span>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <button type="button" onclick="window.TapelixCheckout.updateQty(-1)" style="background: #30283D; color: #F2EEF5; border: 1px solid #76618E; width: 32px; height: 32px; border-radius: 8px; font-weight: 700; cursor: pointer;">-</button>
+            <span id="qtyVal" style="font-size: 1.1rem; font-weight: 700; color: #F2EEF5;">1</span>
+            <button type="button" onclick="window.TapelixCheckout.updateQty(1)" style="background: #30283D; color: #F2EEF5; border: 1px solid #76618E; width: 32px; height: 32px; border-radius: 8px; font-weight: 700; cursor: pointer;">+</button>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem;">
+          <span style="color: var(--text-secondary);">Sous-total produits :</span>
+          <strong id="subtotalPrice" style="color: #F2EEF5;">0 DA</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem;">
+          <span style="color: var(--text-secondary);">Frais de livraison (58 Wilayas) :</span>
+          <strong style="color: #F2EEF5;">500 DA</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 700; border-top: 1px solid rgba(118,97,142,0.4); padding-top: 0.75rem; margin-top: 0.75rem;">
+          <span style="color: #F2EEF5;">Total final :</span>
+          <strong id="totalPrice" style="color: var(--accent-light);">500 DA</strong>
+        </div>
+      </div>
+
+      <!-- 6. BOUTON CONFIRMER MA COMMANDE -->
+      <button type="button" id="submitOrderBtn" onclick="window.TapelixCheckout.confirmOrder()" style="width: 100%; padding: 1rem; background: #76618E; color: #FAF7FC; border: 1px solid #B7A5C9; border-radius: 12px; font-weight: 800; font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 20px rgba(118,97,142,0.4); transition: transform 0.2s;">
+        <span>CONFIRMER MA COMMANDE</span>
+        <span>⚡</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- MODALE DE SUCCÈS -->
+  <div class="modal-overlay" id="successModal">
+    <div style="background: #211b2b; border: 1.5px solid #76618E; border-radius: 16px; padding: 2.5rem; max-width: 480px; width: 90%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.8);">
+      <div style="width: 64px; height: 64px; background: rgba(118,97,142,0.25); border: 2px solid #76618E; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 28px;">
+        ✨
+      </div>
+      <h3 class="font-display" style="font-size: 1.7rem; margin: 0 0 0.5rem; color: #F2EEF5;">
+        Commande réussie !
+      </h3>
+      <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+        Votre commande a été enregistrée avec succès dans Google Sheets et transmise à l'espace Admin.<br><br>
+        Numéro de commande : <strong id="successOrderNumber" style="color: var(--accent-light); font-size: 1.25rem;">TAP-XXXX</strong>
+      </p>
+      <button type="button" onclick="window.location.href='./index.html'" style="padding: 0.85rem 2rem; background: #76618E; color: #FAF7FC; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.95rem;">
+        Retour à l'accueil
+      </button>
+    </div>
+  </div>
+
+  <!-- PIED DE PAGE -->
+  <footer class="site-footer" style="background: #15131B; border-top: 1px solid #30283D; padding: 2.5rem 0 1.5rem; margin-top: 3rem;">
+    <div class="container">
+      <div style="text-align: center; color: var(--text-secondary); font-size: 0.85rem;">
+        © 2026 TAPELIX · tapelix.dz. Tous droits réservés.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const productName = urlParams.get('product') || 'Cartes NFC personnalisées';
+      const category = urlParams.get('category') || 'Cartes NFC';
+      const unitPrice = parseFloat(urlParams.get('price')) || 2000;
+
+      const state = {
+        productName,
+        category,
+        unitPrice,
+        quantity: 1,
+        deliveryMode: 'home',
+        socials: {
+          instagram: true,
+          tiktok: false,
+          facebook: false
+        },
+        handles: {
+          instagram: { name: '', link: '' },
+          tiktok: { name: '', link: '' },
+          facebook: { name: '', link: '' }
+        }
+      };
+
+      window.TapelixCheckout = {
+        init: function() {
+          document.getElementById('orderProductName').innerText = state.productName;
+          document.getElementById('orderCategoryLabel').innerText = state.category;
+          document.getElementById('orderUnitDisplay').innerText = state.unitPrice.toLocaleString('fr-DZ') + ' DA';
+
+          const thumb = document.getElementById('orderProductThumb');
+          if (thumb) {
+            if (state.category.includes('Keychain')) thumb.src = './images/keychain.jpg';
+            else if (state.category.includes('Table')) thumb.src = './images/table-stand.jpg';
+            else if (state.category.includes('Menu')) thumb.src = './images/digital-menu.jpg';
+            else if (state.category.includes('Digital Cards')) thumb.src = './images/digital-card.jpg';
+            else if (state.category.includes('Creative')) thumb.src = './images/logo.png';
+            else thumb.src = './images/nfc-cards-hero.jpg';
+          }
+
+          const isNfcOrSocial = state.category.includes('NFC') || state.category.includes('Carte') || state.category.includes('Keychain') || state.productName.includes('NFC');
+          if (isNfcOrSocial) {
+            document.getElementById('socialOptionsContainer').style.display = 'block';
+            document.getElementById('standardOptionsContainer').style.display = 'none';
+            this.renderSocialInputs();
+          } else {
+            document.getElementById('socialOptionsContainer').style.display = 'none';
+            document.getElementById('standardOptionsContainer').style.display = 'block';
+          }
+
+          this.updateSummary();
+        },
+
+        toggleSocial: function(soc) {
+          state.socials[soc] = !state.socials[soc];
+          const card = document.querySelector(`[data-soc="${soc}"]`);
+          if (card) {
+            if (state.socials[soc]) card.classList.add('active');
+            else card.classList.remove('active');
+          }
+          this.renderSocialInputs();
+          this.updateSummary();
+        },
+
+        renderSocialInputs: function() {
+          const area = document.getElementById('socialInputsArea');
+          let html = '';
+          ['instagram', 'tiktok', 'facebook'].forEach(soc => {
+            if (state.socials[soc]) {
+              const title = soc.charAt(0).toUpperCase() + soc.slice(1);
+              const namePlaceholder = soc === 'facebook' ? 'Nom de votre page Facebook' : `@votre_${soc}`;
+              const linkPlaceholder = soc === 'facebook' ? 'https://facebook.com/votre_page' : `https://${soc}.com/@votre_compte`;
+              html += `
+                <div style="margin-bottom: 0.85rem; padding-bottom: 0.85rem; border-bottom: 1px solid rgba(118,97,142,0.25);">
+                  <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.45rem;">
+                    <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #B7A5C9;"></span>
+                    <strong style="color: #F2EEF5; font-size: 0.9rem;">Carte NFC ${title}</strong>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                    <div>
+                      <label style="font-size: 0.75rem; color: var(--accent-light); display: block; margin-bottom: 0.2rem;">Nom / Pseudo du compte *</label>
+                      <input type="text" class="form-control" value="${state.handles[soc]?.name || ''}" placeholder="${namePlaceholder}" oninput="window.TapelixCheckout.setAccountInfo('${soc}', 'name', this.value)">
+                    </div>
+                    <div>
+                      <label style="font-size: 0.75rem; color: var(--accent-light); display: block; margin-bottom: 0.2rem;">Lien direct du profil (URL)</label>
+                      <input type="url" class="form-control" value="${state.handles[soc]?.link || ''}" placeholder="${linkPlaceholder}" oninput="window.TapelixCheckout.setAccountInfo('${soc}', 'link', this.value)">
+                    </div>
+                  </div>
+                </div>
+              `;
+            }
+          });
+          area.innerHTML = html || '<span style="font-size: 0.8rem; color: var(--text-secondary);">Aucun réseau sélectionné. Cliquez sur une des cartes ci-dessus pour activer vos réseaux.</span>';
+        },
+
+        setAccountInfo: function(soc, field, val) {
+          if (!state.handles[soc]) state.handles[soc] = { name: '', link: '' };
+          state.handles[soc][field] = val;
+        },
+
+        setDelivery: function(mode) {
+          state.deliveryMode = mode;
+          const homeCard = document.getElementById('delivHomeCard');
+          const deskCard = document.getElementById('delivDeskCard');
+          const deskArea = document.getElementById('deskArea');
+          const homeArea = document.getElementById('homeAddressArea');
+
+          if (mode === 'home') {
+            homeCard.classList.add('active');
+            deskCard.classList.remove('active');
+            deskArea.style.display = 'none';
+            homeArea.style.display = 'block';
+          } else {
+            deskCard.classList.add('active');
+            homeCard.classList.remove('active');
+            deskArea.style.display = 'block';
+            homeArea.style.display = 'none';
+          }
+        },
+
+        updateQty: function(delta) {
+          state.quantity += delta;
+          if (state.quantity < 1) state.quantity = 1;
+          document.getElementById('qtyVal').innerText = state.quantity;
+          this.updateSummary();
+        },
+
+        updateSummary: function() {
+          const subtotal = state.unitPrice * state.quantity;
+          const total = subtotal + 500;
+          document.getElementById('subtotalPrice').innerText = subtotal.toLocaleString('fr-DZ') + ' DA';
+          document.getElementById('totalPrice').innerText = total.toLocaleString('fr-DZ') + ' DA';
+        },
+
+        confirmOrder: async function() {
+          const name = document.getElementById('clientName')?.value.trim() || '';
+          const phone = document.getElementById('clientPhone')?.value.trim() || '';
+          const wilaya = document.getElementById('clientWilaya')?.value.trim() || '';
+          const commune = document.getElementById('clientCommune')?.value.trim() || '';
+          const address = document.getElementById('clientAddress')?.value.trim() || '';
+          const desk = document.getElementById('clientDesk')?.value.trim() || '';
+          const standardNote = document.getElementById('standardCustomNote')?.value.trim() || '';
+
+          if (!name || !phone || !wilaya || !commune) {
+            alert('Veuillez remplir vos coordonnées obligatoires (Nom, Téléphone, Wilaya et Commune).');
+            return;
+          }
+
+          const formData = new FormData();
+          formData.append('customer_name', name);
+          formData.append('customer_phone', phone);
+          formData.append('product_type', state.productName);
+          formData.append('category', state.category);
+          formData.append('quantity', String(state.quantity));
+          formData.append('wilaya', wilaya);
+          formData.append('delivery_method', state.deliveryMode);
+          formData.append('deskName', desk || address);
+          formData.append('description', standardNote);
+
+          const socialLinksPayload = {};
+          const isNfcOrSocial = state.category.includes('NFC') || state.category.includes('Carte') || state.category.includes('Keychain') || state.productName.includes('NFC');
+          if (isNfcOrSocial) {
+            ['instagram', 'tiktok', 'facebook'].forEach(soc => {
+              if (state.socials[soc]) {
+                const h = state.handles[soc] || {};
+                socialLinksPayload[soc] = `Nom: ${h.name || 'N/A'}, Lien: ${h.link || 'N/A'}`;
+              }
+            });
+          }
+          formData.append('social_links', JSON.stringify(socialLinksPayload));
+
+          const fileInput = document.getElementById('orderFiles');
+          if (fileInput && fileInput.files) {
+            for (let i = 0; i < fileInput.files.length; i++) {
+              formData.append('files', fileInput.files[i]);
+            }
+          }
+
+          const btn = document.getElementById('submitOrderBtn');
+          if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = '<span>ENREGISTREMENT EN COURS...</span>';
+          }
+
+          try {
+            const res = await fetch('/api/orders', {
+              method: 'POST',
+              body: formData
+            });
+            const data = await res.json();
+            if (res.ok && data.success) {
+              const orderNum = data.order?.order_number || 'TAP-XXXX';
+              document.getElementById('successOrderNumber').innerText = orderNum;
+              document.getElementById('successModal').classList.add('active');
+            } else {
+              alert(data.error || 'Erreur lors de l\'enregistrement de la commande.');
+              if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '<span>CONFIRMER MA COMMANDE</span><span>⚡</span>';
+              }
+            }
+          } catch (err) {
+            console.error('Order submission error:', err);
+            alert('Impossible de contacter le serveur. Veuillez vérifier votre connexion.');
+            if (btn) {
+              btn.disabled = false;
+              btn.innerHTML = '<span>CONFIRMER MA COMMANDE</span><span>⚡</span>';
+            }
+          }
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        window.TapelixCheckout.init();
+      });
+    })();
+  </script>
+</body>
+</html>

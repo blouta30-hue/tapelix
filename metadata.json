@@ -1,0 +1,6 @@
+{
+  "name": "TAPELIX - Solutions NFC & Services Numériques",
+  "description": "Boutique officielle TAPELIX (tapelix.dz) : Cartes NFC connectées, porte-clés intelligents, chevalets de table NFC/QR, menus digitaux et cartes de visite connectées en Algérie.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
