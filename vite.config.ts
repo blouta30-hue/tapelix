@@ -29,6 +29,7 @@ function copyStaticAssetsPlugin() {
 
 export default defineConfig(() => {
   return {
+    base: '/tapelix/',
     plugins: [react(), tailwindcss(), copyStaticAssetsPlugin()],
     resolve: {
       alias: {
